@@ -1,0 +1,17 @@
+server:
+  port: 9092
+
+spring:
+  h2:
+    console:
+      enabled: true
+
+  application:
+    name: PAYMENT-SERVICE
+
+  datasource:
+    generate-unique-name: false
+    name: payment-service-db
+
+  config:
+    import: optional:configserver:http://localhost:7777

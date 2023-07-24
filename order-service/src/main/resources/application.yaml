@@ -1,0 +1,17 @@
+server:
+  port: 9091
+
+spring:
+  h2:
+    console:
+      enabled: true
+
+  application:
+    name: ORDER-SERVICE
+
+  datasource:
+    generate-unique-name: false
+    name: order-service-db
+
+  config:
+    import: optional:configserver:http://localhost:7777

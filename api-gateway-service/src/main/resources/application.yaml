@@ -1,0 +1,39 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: API-GATEWAY-SERVICE
+
+  cloud:
+    gateway:
+      routes:
+        - id: shopping-service
+          uri: lb://SHOPPING-SERVICE
+          predicates:
+            - Path= /shopping/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: shopping-service
+                fallbackuri: forward:/fallback/shopping
+
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path= /order/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: order-service
+                fallbackuri: forward:/fallback/order
+
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path= /payment/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: payment-service
+                fallbackuri: forward:/fallback/payment

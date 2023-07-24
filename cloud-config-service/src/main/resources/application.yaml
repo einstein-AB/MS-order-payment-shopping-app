@@ -1,0 +1,12 @@
+server:
+  port: 7777
+
+spring:
+  application:
+    name: CLOUD-CONFIG-SERVICE
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/einstein-AB/cloud-config-server-properties
